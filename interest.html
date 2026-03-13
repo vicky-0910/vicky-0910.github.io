@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>璇 SYUAN</title>
+
+  <link rel="icon" href="static/img/icon.jpeg" type="image/x-icon" />
+  <link rel="stylesheet" href="static/css/EricCSSReset.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    body{
+      background: linear-gradient(0deg, #98eab0 0%,#f3ffda  60%);
+      color: #444;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 3rem 0;
+      font-weight: bold;
+      color: #444;
+      text-align: center;
+    }
+
+    h1::after{
+      content:"";
+      display:block;
+      width:50vw;
+      height:4px;
+      background:linear-gradient(to right, #98eab0 0%,#f3ffda  60%);
+
+      margin:8px auto 0;
+      border-radius:2px;
+    }
+
+    /* section */
+
+    .era{
+      text-align: left;
+      padding: 20px 50px 150px 50px;
+      margin: 0 5vw;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    /* sticky title */
+
+    .era-title {
+      text-align: left;
+      align-self:flex-start;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin: 0 0 20px 0;
+      position: sticky;
+      top: 50px;
+      padding: 10px 0;
+    }
+
+    /* stacking container */
+
+    .stacking{
+      position:relative;
+      max-width:700px;
+      margin: 0 5vw;
+      width: 100%;
+    }
+
+    /* card */
+
+    .stacking__card{
+
+      background:#EEFFED;
+
+      border-radius:14px;
+
+      padding:40px;
+
+      margin-bottom:120px;
+
+      box-shadow:0 15px 35px rgba(0,0,0,0.15);
+
+      transform-origin:center center;
+
+      text-decoration: none;
+
+    }
+
+    /* card text */
+
+    .stacking__card h2{
+      margin-bottom:10px;
+      font-size:1.4rem;
+    }
+
+    .stacking__card p{
+      line-height:1.7;
+      opacity:0.8;
+    }
+
+
+    /* mobile */
+
+    @media (max-width:768px){
+    h1{
+      font-size: 2.4rem;
+    }
+    .era{
+      padding: 10px 30px 150px;
+    }
+    .era-title{
+      font-size:1.6rem;
+    }
+
+    .stacking__card{
+      padding:30px;
+    }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+      <a class="logo" href="index.html"><img src="static/img/icon.jpeg" />ABOUT SYUAN</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="info.html">資訊成果</a>
+        <a href="service.html">服務活動</a>
+        <a href="interest.html">興趣學習</a>
+        <a href="awards.html">競賽與得獎紀錄</a>
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        ☰
+      </div>
+  </nav>
+
+  <div class="content">
+    
+  <h1>興趣學習</h1>
+
+
+  <section class="era" style="background: #f3ffda;">
+
+    <div class="stacking">
+
+      <a href="#" style="text-decoration: none; color: #444;">
+      <div class="stacking__card">
+      <h2>影片剪輯</h2>
+      <p>因為社團而學會的技能，結果連高中的畢業影片也一併負責了。回頭檢視一個個影片可以感覺到自己逐漸成長</p>
+      <p></p>
+      </div>
+      </a>
+
+      <div class="stacking__card">
+      <h2>閱讀小筆記</h2>
+      <p></p>
+      </div>
+
+      <div class="stacking__card">
+      <h2>編織：鉤針到棒針</h2>
+      <p></p>
+      </div>
+
+      <div class="stacking__card">
+      <h2>那些炸廚房的紀錄</h2>
+      <p>食譜們</p>
+      </div>
+
+
+    </div>
+
+    
+  </section>
+
+  <span class="blank" style="height: 100px;"></span>
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 每個 stacking 區塊
+    document.querySelectorAll(".stacking").forEach((stack) => {
+        const cards = gsap.utils.toArray(stack.querySelectorAll(".stacking__card"));
+        const spacer = 50;
+
+        let stackHeight = stack.offsetHeight;
+        let scrollLength = stackHeight - window.innerHeight;
+
+        cards.forEach((card, index) => {
+            // 單張卡片堆疊效果
+            ScrollTrigger.create({
+                trigger: card,
+                start: `center-=${index * spacer} center`,
+                endTrigger: stack,
+                end: "bottom 70%",   // 使用計算長度
+                pin: true,
+                pinSpacing: false,
+                // markers: true,
+                invalidateOnRefresh: true
+            });
+
+            // 卡片縮放
+            const scaleValue = 0.85 + index * 0.05;
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top center",
+                    end: "bottom top",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                scale: scaleValue
+            });
+        });
+
+        // 移除整組 pin，改由卡片個別 pin + 標題 sticky 控制區塊結束
+    });
+  </script>
+
+  <script>
+    const toggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    /* 手機版點擊第二層 */
+    document.querySelectorAll(".dropdown-toggle").forEach(item => {
+      item.addEventListener("click", function(e) {
+
+        // 手機才啟用點擊展開
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          this.parentElement.classList.toggle("open");
+        }
+
+      });
+    });
+  </script>
+</body>
+</html>

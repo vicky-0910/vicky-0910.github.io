@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>璇 SYUAN</title>
+
+  <link rel="icon" href="static/img/icon.jpeg" type="image/x-icon" />
+  <link rel="stylesheet" href="static/css/EricCSSReset.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+  <style>
+    
+  </style>
+</head>
+
+<body>
+
+  <!-- Loader -->
+  <div id="door-loader">
+    <div class="door left"></div>
+    <div class="door right"></div>
+    <div class="loader-text">Hello, This is Syuan</div>
+  </div>
+
+  <!-- 主內容 -->
+  <nav class="navbar">
+      <a class="logo" href="index.html"><img src="static/img/icon.jpeg" />ABOUT SYUAN</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="info.html">資訊成果</a>
+        <a href="service.html">服務活動</a>
+        <a href="interest.html">興趣學習</a>
+        <a href="awards.html">競賽與得獎紀錄</a>
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        ☰
+      </div>
+    </nav>
+  <div class="content">
+
+    <section class="banner">
+
+      <div class="banner-content">
+        <h1>陳曉璇</h1>
+
+        <p class="name-en">SIAO SYUAN,CHEN</p>
+
+        <p class="education">
+          2021-2024 臺北市立中山女子高級中學<br>
+          2024-NOW 國立東華大學 資訊工程學系 大二
+        </p>
+
+        <p class="intro">
+          得過文學獎的理組生，但不會自我介紹。<br>
+          以為自己喜歡室內活動，總是靜靜坐著閱讀、編織、烘焙，最後成為電腦桌前的資工人。
+          卻也會在烈日下打排球、在沒有冷氣的室外棒球場尖叫著為球員歡呼（WBC打贏韓國真的好開心）。<br>
+
+          不想被定型，也期許自己不要把他人定型：因為一個人的組成能如此繽紛。
+        </p>
+
+      </div>
+
+      <div class="scroll-indicator">
+        <span></span>
+      </div>
+
+    </section>
+
+    <section class="section-wrapper">
+
+  <div class="wrapper">
+
+    <a class="card" href="info.html">
+      
+      <h2>資訊成果</h2>
+      <p>
+        從高中開始接觸程式設計後的一些學習與實作成果，
+        包含社團教學簡報、小專題，以及大學期間的網站開發等。
+      </p>
+      <span class="more">查看更多 →</span>
+    </a>
+
+    <a class="card" href="service.html">
+      <h2>服務活動</h2>
+      <p>
+        在社團與活動中參與籌備與協作，
+        包含活動規劃、團隊合作與志工服務經驗。
+      </p>
+      <span class="more">查看更多 →</span>
+    </a>
+
+    <a class="card" href="interest.html">
+      <h2>興趣學習</h2>
+      <p>
+        在課程之外學習探索的個人興趣，
+        包含影片剪輯、閱讀紀錄、編織成品等。
+      </p>
+      <span class="more">查看更多 →</span>
+    </a>
+
+    <a class="card" href="awards.html">
+      <h2>競賽與得獎紀錄</h2>
+      <p>
+        只是因為四個版面比較好看所以放著，
+        包含少量獎狀，與大量的個人心得。
+      </p>
+      <span class="more">查看更多 →</span>
+    </a>
+
+  </div>
+
+</section>
+
+  </div>
+
+  <script>
+    window.addEventListener("load", () => {
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          // 動畫結束後移除 loader
+          document.getElementById("door-loader").style.display = "none";
+        }
+      });
+
+      // 先淡出文字
+      tl.to(".loader-text", {
+        opacity: 0,
+        duration: 1
+      })
+
+      // 門打開
+      .to(".door.left", {
+        x: "-100%",
+        duration: 1,
+        ease: "power3.inOut"
+      }, "-=0.2")
+
+      .to(".door.right", {
+        x: "100%",
+        duration: 1,
+        ease: "power3.inOut"
+      }, "<"); // 同時開始
+    });
+  </script>
+  <script>
+    const toggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    /* 手機版點擊第二層 */
+    document.querySelectorAll(".dropdown-toggle").forEach(item => {
+      item.addEventListener("click", function(e) {
+
+        // 手機才啟用點擊展開
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          this.parentElement.classList.toggle("open");
+        }
+
+      });
+    });
+  </script>
+</body>
+</html>
