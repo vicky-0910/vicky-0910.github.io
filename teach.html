@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>璇 SYUAN</title>
+
+  <link rel="icon" href="static/img/icon.jpeg" type="image/x-icon" />
+  <link rel="stylesheet" href="static/css/EricCSSReset.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+  <style>
+    body{
+      background: #98eab0;
+      color: #444;
+    }
+    a{
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+      <a class="logo" href="index.html"><img src="static/img/icon.jpeg" />ABOUT SYUAN</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="info.html">資訊成果</a>
+        <a href="service.html">服務活動</a>
+        <a href="interest.html">興趣學習</a>
+        <a href="awards.html">競賽與得獎紀錄</a>
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        ☰
+      </div>
+  </nav>
+
+  <div class="content">
+    課程規劃：
+    kahoot、期末上機考，與學生應對<br>
+    <a href="https://slides.com/siao" style="text-decoration: none;">上學期簡報</a>      
+    <a href="https://slides.com/shaunna163" style="text-decoration: none;">下學期簡報</a>
+    <a href="https://hackmd.io/vxEB8eA1R2mkNPwtmEZcWQ?view#ZSISC29%C3%9730-%E5%9F%BA%E7%A4%8E%E7%8F%AD" style="text-decoration: none;">hackmd</a>
+  </div>
+
+  
+  <script>
+    const toggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    /* 手機版點擊第二層 */
+    document.querySelectorAll(".dropdown-toggle").forEach(item => {
+      item.addEventListener("click", function(e) {
+
+        // 手機才啟用點擊展開
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          this.parentElement.classList.toggle("open");
+        }
+
+      });
+    });
+  </script>
+</body>
+</html>

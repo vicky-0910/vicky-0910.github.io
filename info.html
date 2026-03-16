@@ -81,7 +81,7 @@
 
       padding:40px;
 
-      margin-bottom:120px;
+      margin-bottom:70px;
 
       box-shadow:0 15px 35px rgba(0,0,0,0.15);
 
@@ -154,29 +154,37 @@
     </div>
     <div class="stacking">
 
-      <a href="#" style="text-decoration: none; color: #444;">
+      <a href="teach.html" style="text-decoration: none; color: #444;">
       <div class="stacking__card">
-      <h2>資研社教學</h2>
-      <p>高二時曾擔任社團教學，使用的簡報與講義</p>
-      <a href="https://slides.com/siao" style="text-decoration: none; color: #98eab0;">上學期簡報</a>      
-      <a href="https://slides.com/shaunna163" style="text-decoration: none; color: #98eab0;">下學期簡報</a>
-      <a href="https://hackmd.io/vxEB8eA1R2mkNPwtmEZcWQ?view#ZSISC29%C3%9730-%E5%9F%BA%E7%A4%8E%E7%8F%AD" style="text-decoration: none; color: #98eab0;">hackmd</a>
+      <h2>資訊研究社教學彙整</h2>
+      <p>高二 資訊研究社 C++ 教學<br>
+      與其他兩位教學一同分擔社團教學。課程方面上學期規劃C++基礎語法，下學期則是將社團分成兩班：著重上學期內容複習與實作的基礎班與教導STL和基礎演算法的進階班。<br>
+      查看更多 →</p>
       </div>
       </a>
 
       <div class="stacking__card">
-      <h2>高中網頁專題</h2>
-      <p>HTML / CSS 製作的課程專題</p>
+      <h2>PHP網頁專題</h2>
+      <p>高三 透過 XAMPP 架設網站並理解相關概念<br>
+      我們老師沒有教太深入的 HTML, CSS ，一上來就直接教我們資料庫的觀念跟 MySQL 語法。現在想想雖然有點跳級，但在有限的時間內，很多基礎觀念都被建構完善，為我大學架設活動網站鋪好基石。</p>
+      <a href="https://slides.com/siao" style="text-decoration: none; color: #98eab0;">成果影片</a>      
+      <a href="https://slides.com/shaunna163" style="text-decoration: none; color: #98eab0;">作品介紹pdf</a>
       </div>
 
       <div class="stacking__card">
-      <h2>資訊之芽期末專題</h2>
-      <p>完成的小型程式專案</p>
+      <h2>資訊之芽期末大作業</h2>
+      <p>高三 使用 C++ 製作 Discord Bot <br>
+      參與台大資訊之芽課程作業。其實大部分 Discord Bot 教學都是使用 Python ，當初發現講師找到C++的資源並讓我們付諸實行真的很感謝。這是我第一次和他人合作完成程式碼，我們各自負責不同功能，最後再把程式拼貼，讓我對後來協作的分工更有想法。</p>
+      <a href="https://slides.com/siao" style="text-decoration: none; color: #98eab0;">部分程式碼</a>  
+      <a href="https://slides.com/shaunna163" style="text-decoration: none; color: #98eab0;">作品介紹pdf</a>
       </div>
 
       <div class="stacking__card">
-      <h2>自由研究專題</h2>
-      <p>資訊相關自主研究</p>
+      <h2>科技應用專題</h2>
+      <p>高三 使用Arduino製作節奏遊戲<br>
+      這個專題沒有特別限定主題或材料，完全交由我們自由發揮。因為我高一自主學習有碰過 Arduino開發板，組員們會樂譜，於是便決定了這個主題。不只是軟體，過程中也要一一研究各個元件的用法，還因為蜂鳴器聲音過於荒誕被我們取了自動誦經機的別名。</p>
+      <a href="https://slides.com/siao" style="text-decoration: none; color: #98eab0;">成果影片</a>  
+      <a href="https://slides.com/shaunna163" style="text-decoration: none; color: #98eab0;">作品介紹pdf</a>
       </div>
 
 
@@ -194,15 +202,17 @@
     <div class="stacking">
 
     <div class="stacking__card">
-    <h2>AI 通識課程專題</h2>
-    <p>機器學習與資料分析練習</p>
+    <h2>人工智慧導論課程期中期末報告</h2>
+    <p>大一 使用 AI 創作成品</p>
     </div>
 
+    <a href="#" style="text-decoration: none; color: #444;">
     <div class="stacking__card">
     <h2>迎新宿營網站</h2>
-    <p>活動網站設計與架設</p>
-    <a href="https://github.com/vicky-0910/csieCampProject" style="text-decoration: none; color: #f3ffda;">github原檔</a>
+    <p>大一 活動網站設計與架設</p>
+    <a href="https://github.com/vicky-0910/csieCampProject" style="text-decoration: none; color: #98eab0;">github原檔</a>
     </div>
+    </a>
 
     </div>
 
@@ -225,12 +235,12 @@
             // 單張卡片堆疊效果
             ScrollTrigger.create({
                 trigger: card,
-                start: `center-=${index * spacer} center`,
+                start: `center-=${index * spacer} 30%`,
                 endTrigger: stack,
                 end: "bottom 70%",   // 使用計算長度
                 pin: true,
                 pinSpacing: false,
-                // markers: true,
+                markers: true,
                 invalidateOnRefresh: true
             });
 
@@ -239,9 +249,10 @@
             gsap.to(card, {
                 scrollTrigger: {
                     trigger: card,
-                    start: "top center",
+                    start: "top 30%",
                     end: "bottom top",
                     scrub: true,
+                    markers: true,
                     invalidateOnRefresh: true
                 },
                 scale: scaleValue
