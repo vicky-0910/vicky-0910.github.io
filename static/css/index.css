@@ -271,14 +271,14 @@ body {
 .more{
   margin-top:16px;
   font-size:0.9rem;
-  opacity:0.8;
+  color:#66B8A7;
 }
 
 /* hover 動畫 */
 .card:hover{
   transform:translateY(-6px);
   background:#F3FFDA;
-  color: #000;
+  color: #253428;  
   box-shadow:0 12px 24px rgba(0,0,0,0.25);
 }
 
@@ -300,6 +300,7 @@ body {
 
 .card:hover h2::after{
   width:100px;
+  background:#82b9ae;
 }
 
 /* 平板 */

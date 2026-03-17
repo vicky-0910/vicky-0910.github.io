@@ -15,7 +15,7 @@
 
   <style>
     body{
-      background: linear-gradient(0deg, #98eab0 0%,#f3ffda  60%);
+      background: #C2FFD5;
       color: #444;
     }
 
@@ -32,8 +32,7 @@
       display:block;
       width:50vw;
       height:4px;
-      background:linear-gradient(to right, #98eab0 0%,#f3ffda  60%);
-
+      background: #EEFFED;
       margin:8px auto 0;
       border-radius:2px;
     }
@@ -43,10 +42,11 @@
     .era{
       text-align: left;
       padding: 20px 50px 150px 50px;
-      margin: 0 5vw;
+      margin: 45px 5vw;
       display:flex;
       flex-direction:column;
       align-items:center;
+      box-shadow: 0px 0px 0px 5px #C2FFD5,15px 15px 0px 0px #EEFFED,-15px -15px 0px 0px #EEFFED;
     }
 
     /* sticky title */
@@ -57,8 +57,6 @@
       font-size: 1.6rem;
       font-weight: bold;
       margin: 0 0 20px 0;
-      position: sticky;
-      top: 50px;
       padding: 10px 0;
     }
 
@@ -94,13 +92,23 @@
     /* card text */
 
     .stacking__card h2{
-      margin-bottom:10px;
+      color: #253428; 
       font-size:1.4rem;
     }
 
     .stacking__card p{
       line-height:1.7;
       opacity:0.8;
+    }
+
+    .stacking__card h3{
+      color: #253428; 
+      margin-bottom:10px;
+    }
+
+    .stacking__card a{
+      text-decoration: none; 
+      color: #66B8A7;
     }
 
 
@@ -148,7 +156,7 @@
   <h1>資訊成果</h1>
 
 
-  <section class="era" style="background: #f3ffda;">
+  <section class="era" style="background: #f7ffc2;">
     <div class="era-title">
     高中 2021-2024
     </div>
@@ -157,34 +165,40 @@
       <a href="teach.html" style="text-decoration: none; color: #444;">
       <div class="stacking__card">
       <h2>資訊研究社教學彙整</h2>
-      <p>高二 資訊研究社 C++ 教學<br>
-      與其他兩位教學一同分擔社團教學。課程方面上學期規劃C++基礎語法，下學期則是將社團分成兩班：著重上學期內容複習與實作的基礎班與教導STL和基礎演算法的進階班。<br>
-      查看更多 →</p>
+      <h3>高二 資訊研究社 C++ 教學</h3>
+      <p>我們社課是由三位教學一同分擔。上下學期個別規劃不同課程，每堂課要準備簡報、課堂kahoot還有課後練習等資源。為了教學，不能只是會寫C++，更要理解為什麼不能動、有那些常見的BUG、誤解，把基礎構築的更加穩固。</p>
+      <p style="opacity: 1; margin-top: 10px;color: #66B8A7;">查看更多 →</p>
       </div>
       </a>
 
       <div class="stacking__card">
       <h2>PHP網頁專題</h2>
-      <p>高三 透過 XAMPP 架設網站並理解相關概念<br>
+      <h3>高三 透過 XAMPP 架設網站並理解相關概念</h3>
+      <p>
       我們老師沒有教太深入的 HTML, CSS ，一上來就直接教我們資料庫的觀念跟 MySQL 語法。現在想想雖然有點跳級，但在有限的時間內，很多基礎觀念都被建構完善，為我大學架設活動網站鋪好基石。</p>
-      <a href="https://slides.com/siao" style="text-decoration: none; color: #98eab0;">成果影片</a>      
-      <a href="https://slides.com/shaunna163" style="text-decoration: none; color: #98eab0;">作品介紹pdf</a>
+      <p style="opacity: 1; margin-top: 10px; color: #253428;">相關連結：
+      <a href="https://www.youtube.com/watch?v=U1ogpl_681s" target="_blank">成果影片</a>      
+      <a href="static/1121_PHPwMySQL.pdf" target="_blank">作品介紹pdf</a></p>
       </div>
 
       <div class="stacking__card">
       <h2>資訊之芽期末大作業</h2>
-      <p>高三 使用 C++ 製作 Discord Bot <br>
+      <h3>高三 使用 C++ 製作 Discord Bot</h3>
+      <p>
       參與台大資訊之芽課程作業。其實大部分 Discord Bot 教學都是使用 Python ，當初發現講師找到C++的資源並讓我們付諸實行真的很感謝。這是我第一次和他人合作完成程式碼，我們各自負責不同功能，最後再把程式拼貼，讓我對後來協作的分工更有想法。</p>
-      <a href="https://slides.com/siao" style="text-decoration: none; color: #98eab0;">部分程式碼</a>  
-      <a href="https://slides.com/shaunna163" style="text-decoration: none; color: #98eab0;">作品介紹pdf</a>
+      <p style="opacity: 1; margin-top: 10px; color: #253428;">相關連結：
+      <a href="static/bot_code.cpp" target="_blank">部分程式碼</a>  
+      <a href="static/sprout.pdf" target="_blank">作品介紹pdf</a></p>
       </div>
 
       <div class="stacking__card">
       <h2>科技應用專題</h2>
-      <p>高三 使用Arduino製作節奏遊戲<br>
-      這個專題沒有特別限定主題或材料，完全交由我們自由發揮。因為我高一自主學習有碰過 Arduino開發板，組員們會樂譜，於是便決定了這個主題。不只是軟體，過程中也要一一研究各個元件的用法，還因為蜂鳴器聲音過於荒誕被我們取了自動誦經機的別名。</p>
-      <a href="https://slides.com/siao" style="text-decoration: none; color: #98eab0;">成果影片</a>  
-      <a href="https://slides.com/shaunna163" style="text-decoration: none; color: #98eab0;">作品介紹pdf</a>
+      <h3>高三 使用Arduino製作節奏遊戲</h3>
+      <p>
+      這個專題沒有特別限定主題或材料，完全交由我們自由發揮。因為我高一時有碰過 Arduino開發板，組員有人通樂理，於是便決定了這個主題。過程中不只是軟體，也要一一研究各個元件的用法。</p>
+      <p style="opacity: 1; margin-top: 10px; color: #253428;">相關連結：
+      <a href="https://drive.google.com/file/d/1xXnTJIz9qJYFiHTAXlW2W1Fl4haN1ACd/view" target="_blank">成果影片</a>  
+      <a href="static/1121_info.pdf" target="_blank">作品介紹pdf</a></p>
       </div>
 
 
@@ -193,7 +207,7 @@
     
   </section>
 
-  <section class="era" style="background: #98eab0;">
+  <section class="era" style="background: #DDFFC2;">
 
     <div class="era-title">
     大學 2024-NOW
@@ -202,15 +216,24 @@
     <div class="stacking">
 
     <div class="stacking__card">
-    <h2>人工智慧導論課程期中期末報告</h2>
-    <p>大一 使用 AI 創作成品</p>
+    <h2>人工智慧導論</h2>
+    <h3>大一 使用 AI 創作成品</h3>
+    <p>高中時期不曾使用AI，只有簡單了解機器學習的概念，升上大學後感覺到時代的推力，於是在大一上選修這門通識課。
+      期中報告重製高中的網站專題；期末報告用API串接製作LINEBot。雖然我所擁有的知識在協助我和AI對話、DeBug、以及實際發布應用上仍有所用，但深深感受到AI的進化，而我個人的成長速度是否能追上科技發展？
+    </p>
+    <p style="opacity: 1; margin-top: 10px; color: #253428;">相關連結：
+      <a href="static/1131_AI_mid_web.pdf" target="_blank">期中報告（網站）pdf</a>  
+      <a href="static/1131_AI_fin_LINEBot.pdf" target="_blank">期末報告（LINEBot）pdf</a></p>
     </div>
 
-    <a href="#" style="text-decoration: none; color: #444;">
+    <a href="teach.html" style="text-decoration: none; color: #444;">
     <div class="stacking__card">
     <h2>迎新宿營網站</h2>
-    <p>大一 活動網站設計與架設</p>
-    <a href="https://github.com/vicky-0910/csieCampProject" style="text-decoration: none; color: #98eab0;">github原檔</a>
+    <h3>大一 配合活動實際應用</h3>
+    <p>這是第一次實際要給參與活動的成員使用。不同以往報告完就可以把作品封存，我研究了要怎麼安全的公開發布網站，還要配合活動規劃設計UI、後台邏輯，超級緊張，活動期間仍是出了一些問題，還好最後有驚無險的應對處理。</p>
+    <p style="opacity: 1; margin-top: 10px; color: #253428;">相關連結：
+    <a href="https://github.com/vicky-0910/csieCampProject" target="_blank">github原檔</a></p>
+    
     </div>
     </a>
 
@@ -231,6 +254,17 @@
         let stackHeight = stack.offsetHeight;
         let scrollLength = stackHeight - window.innerHeight;
 
+        const title = stack.closest(".era").querySelector(".era-title");
+
+        ScrollTrigger.create({
+            trigger: stack,
+            start: "top 120px",          // 跟 navbar 對齊
+            end: "bottom 70%",          // ⭐ 和卡片一致！
+            pin: title,
+            pinSpacing: false,
+            // markers: true
+        });
+
         cards.forEach((card, index) => {
             // 單張卡片堆疊效果
             ScrollTrigger.create({
@@ -240,7 +274,7 @@
                 end: "bottom 70%",   // 使用計算長度
                 pin: true,
                 pinSpacing: false,
-                markers: true,
+                //markers: true,
                 invalidateOnRefresh: true
             });
 
@@ -252,7 +286,7 @@
                     start: "top 30%",
                     end: "bottom top",
                     scrub: true,
-                    markers: true,
+                    //markers: true,
                     invalidateOnRefresh: true
                 },
                 scale: scaleValue

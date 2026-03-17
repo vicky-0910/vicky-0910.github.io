@@ -202,12 +202,12 @@
             // 單張卡片堆疊效果
             ScrollTrigger.create({
                 trigger: card,
-                start: `center-=${index * spacer} center`,
+                start: `center-=${index * spacer} 30%`,
                 endTrigger: stack,
                 end: "bottom 70%",   // 使用計算長度
                 pin: true,
                 pinSpacing: false,
-                // markers: true,
+                //markers: true,
                 invalidateOnRefresh: true
             });
 
@@ -216,9 +216,10 @@
             gsap.to(card, {
                 scrollTrigger: {
                     trigger: card,
-                    start: "top center",
+                    start: "top 30%",
                     end: "bottom top",
                     scrub: true,
+                    //markers: true,
                     invalidateOnRefresh: true
                 },
                 scale: scaleValue
