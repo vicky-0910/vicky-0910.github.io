@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>璇 SYUAN</title>
+
+  <link rel="icon" href="static/img/icon.jpeg" type="image/x-icon" />
+  <link rel="stylesheet" href="static/css/EricCSSReset.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Flip.min.js"></script>
+  <style>
+.gallery{
+  display:grid;
+  gap:10px;
+  padding:20px;
+}
+
+@media (max-width:768px){
+  .gallery{ grid-template-columns:repeat(3,1fr); }
+}
+
+@media (min-width:769px){
+  .gallery{ grid-template-columns:repeat(5,1fr); }
+}
+.tile{
+  position:relative;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.tile img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.tile.expanded{
+  position:fixed;
+  top:50%;
+  left:50%;
+
+  width:min(90vw,400px);
+  height:min(90vw,400px);
+
+  z-index:1000;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  color:white;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+
+  opacity:0;
+  transition:0.3s;
+}
+
+.tile.expanded .overlay{
+  opacity:1;
+}
+
+.tile.active{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(1.5);
+  z-index:1000;
+
+  width:min(90vw,400px);
+  height:min(90vw,400px);
+}
+
+.tile.active .overlay{
+  opacity:1;
+}
+
+.backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(6px);
+
+  opacity:0;
+  pointer-events:none;
+  transition:0.3s;
+
+  z-index:999;
+}
+
+.backdrop.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.tile:hover{
+  transform:scale(1.05);
+}
+
+.overlay{
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.2)
+  );
+}
+
+.overlay{
+  justify-content:flex-end;
+  align-items:flex-start;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+      <a class="logo" href="index.html"><img src="static/img/icon.jpeg" />ABOUT SYUAN</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="info.html">資訊成果</a>
+        <a href="service.html">服務活動</a>
+        <a href="interest.html">興趣學習</a>
+        <a href="awards.html">競賽與得獎紀錄</a>
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        ☰
+      </div>
+  </nav>
+
+  <div class="content">
+
+    <div class="gallery">
+
+  <div class="tile">
+    <img src="static/img/banner_bg_11.jpg">
+    <div class="overlay">
+      <h3>台東旅行</h3>
+      <p>第一次看到這麼藍的海 🌊</p>
+    </div>
+  </div>
+
+  <div class="tile">
+    <img src="static/img/banner_bg_11.jpg">
+    <div class="overlay">
+      <h3>咖啡廳</h3>
+      <p>讀書一整天 ☕</p>
+    </div>
+  </div>
+
+    <div class="tile">
+    <img src="static/img/banner_bg_11.jpg">
+    <div class="overlay">
+      <h3>台東旅行</h3>
+      <p>第一次看到這麼藍的海 🌊</p>
+    </div>
+  </div>
+
+  <div class="tile">
+    <img src="static/img/banner_bg_11.jpg">
+    <div class="overlay">
+      <h3>咖啡廳</h3>
+      <p>讀書一整天 ☕</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- 背景遮罩 -->
+<div class="backdrop"></div>
+
+  </div>
+
+  <script>
+gsap.registerPlugin(Flip);
+
+const tiles = document.querySelectorAll(".tile");
+const backdrop = document.querySelector(".backdrop");
+
+let activeTile = null;
+
+tiles.forEach(tile => {
+
+  tile.addEventListener("click", () => {
+
+    // 關閉狀態
+    if (tile === activeTile) {
+      const state = Flip.getState(tile);
+
+      tile.classList.remove("expanded");
+      backdrop.classList.remove("active");
+
+      Flip.from(state, {
+        duration: 0.6,
+        ease: "power2.inOut"
+      });
+
+      activeTile = null;
+      return;
+    }
+
+    // 關閉其他
+    if (activeTile) {
+      activeTile.classList.remove("expanded");
+    }
+
+    const state = Flip.getState(tile);
+
+    tile.classList.add("expanded");
+    backdrop.classList.add("active");
+
+    Flip.from(state, {
+      duration: 0.6,
+      ease: "power2.inOut",
+      absolute: true   // ⭐ 超重要（避免跑位）
+    });
+
+    activeTile = tile;
+  });
+
+});
+
+// 點背景關閉
+backdrop.addEventListener("click", () => {
+  if (!activeTile) return;
+
+  const state = Flip.getState(activeTile);
+
+  activeTile.classList.remove("expanded");
+  backdrop.classList.remove("active");
+
+  Flip.from(state, {
+    duration: 0.6,
+    ease: "power2.inOut"
+  });
+
+  activeTile = null;
+});
+</script>
+  <script>
+    const toggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    /* 手機版點擊第二層 */
+    document.querySelectorAll(".dropdown-toggle").forEach(item => {
+      item.addEventListener("click", function(e) {
+
+        // 手機才啟用點擊展開
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          this.parentElement.classList.toggle("open");
+        }
+
+      });
+    });
+  </script>
+</body>
+</html>

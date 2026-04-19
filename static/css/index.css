@@ -6,6 +6,14 @@ body {
   overflow-x: hidden;
 }
 
+.blink {
+  animation: blink 0.5s steps(1) 15;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 /* Loader 容器 */
 #door-loader {
   position: fixed;

@@ -12,11 +12,181 @@
 
   <style>
     body{
-      background: #98eab0;
+      background: #B8FCE5;
       color: #444;
     }
     a{
       color: #000;
+    }
+
+    .slides {
+      display: grid;
+      gap: 15px; /* 設定簡報之間的間距 */
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .slides iframe {
+      width: 100% !important;
+      /* 重要：將比例設定在 iframe 本身，確保每份簡報都是 16:9 */
+      aspect-ratio: 16 / 9; 
+      border: none;
+      display: block;
+    }
+
+    .slide-item {
+      display: flex;
+      flex-direction: column;
+      background: #eCefed;
+      border-radius: 6px;
+      overflow: hidden; /* 確保圓角效果 */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* 下方的按鈕樣式 */
+    .grid-open-btn {
+      display: block;
+      width: 100%;       /* 填滿寬度 */
+      padding: 3px 0;   /* 上下內距 */
+      text-align: center;
+      color: #3c4340;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: background 0.3s;
+      opacity: 0.8;
+    }
+
+    @media (max-width:768px){
+      .slides{ grid-template-columns:repeat(1,1fr); }
+    }
+
+    @media (min-width:769px){
+      .slides{ grid-template-columns:repeat(2,1fr); }
+    }
+
+
+
+    .photo-wall {
+      display: flex;
+      align-items: stretch; /* 這是核心：讓所有欄位等高 */
+      gap: 15px;
+    }
+
+    .col {
+      flex: 1; /* 讓每一欄平分寬度 */
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* 橫向照片：正常撐滿寬度 */
+    .h-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+
+    /* 直向照片：關鍵設定 */
+    .v-img {
+      width: 100%;
+      height: 100%;    /* 強制撐滿該欄位的高度 */
+      object-fit: cover; /* 確保照片不會變形，會稍微裁切邊緣以補滿高度 */
+      border-radius: 3px;
+    }
+
+    @media (min-width: 769px) {
+
+    }
+
+    /* 手機版：一欄佈局 */
+    @media (max-width: 768px) {
+      .photo-wall {
+        gap: 5px;
+      }
+      .col {
+        gap: 5px;
+      }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 3rem 0px 0px;
+      font-weight: bold;
+      color: #444;
+      text-align: center;
+    }
+
+
+    /* section */
+
+    .era{
+      text-align: left;
+      padding: 20px 50px 50px 50px;
+      margin: 45px 5vw;
+      display:flex;
+      flex-direction:column;
+      box-shadow: 0px 0px 0px 5px #B8FCE5,15px 15px 0px 0px #EEFFED,-15px -15px 0px 0px #EEFFED;
+    }
+
+    /* sticky title */
+
+    .era-title {
+      text-align: left;
+      align-self:flex-start;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin: 0 0 20px 0;
+      padding: 10px 0;
+    }
+    h2{
+      text-align: left;
+      color: #253428;
+      align-self:flex-start;
+      font-size: 1.4rem;
+    }
+
+    h2::after{
+      content:"";
+      display:block;
+      width:100%;
+      height:2px;
+      margin: 3px 0px;
+      background: #B5D19F;
+      border-radius:2px;
+    }
+
+    .alot{
+      background:#EEFFED;
+      padding:15px;
+      margin: 5px;
+      box-shadow: 0px 3px 0px 0px #AFC999;
+      text-decoration: none;
+    }
+    .alot p{
+      line-height:1.7;
+    }
+    .alot p a{
+      text-decoration: none; 
+      color: #84C6B9;
+    }
+
+    /* mobile */
+
+    @media (max-width:768px){
+    h1{
+      font-size: 2.4rem;
+    }
+    .era{
+      padding: 10px 30px 150px;
+    }
+    .era-title{
+      font-size:1.6rem;
+    }
+    h1{
+      font-size: 1.4rem;
+    }
+
     }
   </style>
 </head>
@@ -39,11 +209,156 @@
   </nav>
 
   <div class="content">
-    課程規劃：
-    kahoot、期末上機考，與學生應對<br>
-    <a href="https://slides.com/siao" style="text-decoration: none;">上學期簡報</a>      
-    <a href="https://slides.com/shaunna163" style="text-decoration: none;">下學期簡報</a>
-    <a href="https://hackmd.io/vxEB8eA1R2mkNPwtmEZcWQ?view#ZSISC29%C3%9730-%E5%9F%BA%E7%A4%8E%E7%8F%AD" style="text-decoration: none;">hackmd</a>
+    <h1>資訊研究社教學</h1>
+    <span style="opacity: 0.8;">zsisc29th 2022/09-2023/06</span>
+    <section class="era" style="background: #DDFFC2;">
+    <div class="era-title">
+    教學筆記
+    </div>
+
+    <div class="alot">
+      <h2>
+      課程規劃
+      </h2>
+      <p>
+        社團內共有三位教學分擔社課內容，任期一學年，課程分為上下兩學期，授課內容以C++為主。<br>
+        上學期著重在基礎C++語法；下學期由於大家吸收程度不一且有轉社新生，於是分為基礎與進階兩班：基礎班著重複習上學期內容並帶入實作、進階班則講解C++STL庫與常見演算法。<br>
+        主要使用GoogleClassroom公告課程事宜，每堂課後依當天內容布置加分作業，學期初有自學考讓程度較好的同學可以自由活動，期末考試為基本分選擇題和加分上機實作題。<br>
+        <p style="opacity: 1; margin-top: 10px; color: #253428;">相關連結：
+          <a href="https://hackmd.io/3h8fSJDfRa-lMhygHnN7oA" target="_blank">下學期課程規劃hackmd</a>
+        </p>
+      </p>
+    </div>
+
+    <div class="alot">
+      <h2>
+      教材準備
+      </h2>
+      <p>
+      課程內容：slides, kahoot, hackmd<br>
+      課後作業：zerojudge, google表單<br>
+      主要會準備slides用作授課簡報，實作課則用hackmd整理範例解，課程結束後用kahoot小測驗作為結尾，前幾名會用社費頒發小零食。<br>
+      雖然zerojudge有不少現成題目，但因為需要讓題目配合上課進度調整難易度，所以一開始很常花時間準備題目跟測資，偶爾會用google表單做小測驗，通常表單的繳交率會比zerojudge實作題高。<br>
+      後來也有人會用slidos，教材種類日新月異，但我光是準備最基本的內容就忙不過來了……
+      </p>
+      <p style="opacity: 1; margin-top: 10px; color: #253428;">相關連結：
+          <a href="https://zerojudge.tw/ShowContest?contestid=9602" target="_blank">上學期zj上機考</a> ｜
+          <a href="#eraslides">課程講義</a></p>
+        </p>
+    </div>
+
+    <div class="alot">
+      <h2>
+      授課情況
+      </h2>
+      <p>
+      因為授課對象是平輩不需要太拘謹，常在凌晨一兩點收到學弟妹來詢問課後作業或其他資訊相關的問題，或是來點播課間音樂，彼此間互動良好。<br>
+      最印象深刻是在第一學期的期末上機考，因為我出的題目有點難度，看到有人作答成功很開心地想看看他們的寫法，意外發現抄襲程式碼的情形，當下最難受的是意識到我的題目會以零人得分作結。後來跟教學夥伴討論後私下和學妹約時間，提醒他們考試公平性，既不希望他們再犯也不希望這件事影響到他們和社內同學的關係。
+      當時程度較好的同學因為同儕關係不好拒絕抄襲，且在提醒之後有反省，準備試教內容認真，後續也成為社團下一屆教學名單，但在交接過程中意外被得知當時抄襲的事件，雖然只大了一屆還是花了不少心力在處理他們的同儕關係。<br>
+      我自己在高三才有在更認真做資訊相關的應用，後來總認為當時的授課內容講得不太精準，也有很多有趣的東西沒有和他們分享到。
+      </p>
+    </div>
+
+  </section>
+
+  <section class="era" style="background: #C2FFD5;" id="eraslides">
+
+    <div class="era-title">
+    課程講義與紀錄</div>
+    <div class="alot">
+      <h2>
+      暑期營隊講義
+      </h2>
+      <p>第一次正式上課就要帶營隊，還跟建中生合開這堂課，現在看東西好青澀。</p>
+      <div class="slides"> 
+      <div class="slide-item">
+      <iframe src="https://slides.com/siao/c-0/embed" title="c-0" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://slides.com/siao/c-0/" target="_blank" class="grid-open-btn">slides原始連結</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://hackmd.io/KjuYrwtgQL24xhzCZkhH6g/embed" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://hackmd.io/KjuYrwtgQL24xhzCZkhH6g?view" target="_blank" class="grid-open-btn">hackmd原始連結</a>
+      </div>
+      
+      </div>
+    </div>
+
+    <div class="alot">
+      <h2>
+      上學期講義
+      </h2>
+      <p>C++基礎語法，其實社團不少人是有基礎的，每次都會準備一些補充的進階資料給他們。</p>
+      <div class="slides"> 
+      <div class="slide-item">
+      <iframe src="https://slides.com/siao/ellipse/embed" title="zsisc29th-1" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://slides.com/siao/ellipse/" target="_blank" class="grid-open-btn">slides原始連結</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://slides.com/siao/minimal/embed" title="zsisc29th-2" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://slides.com/siao/minimal/" target="_blank" class="grid-open-btn">slides原始連結</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://slides.com/siao/bold/embed" title="zsisc29th-4" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://slides.com/siao/bold/" target="_blank" class="grid-open-btn">slides原始連結</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://slides.com/shaunna163/review1208/embed" title="Review" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://slides.com/shaunna163/review1208/" target="_blank" class="grid-open-btn">slides原始連結</a>
+      </div>
+      </div>
+    </div>
+
+    <div class="alot">
+      <h2>
+      下學期講義
+      </h2>
+      <p>進階班的課每次都很怕講錯，而且社課50分鐘根本來不及，STL最後只講如何操作沒有細說背後的資料結構。</p>
+      <div class="slides"> 
+      <div class="slide-item">
+      <iframe src="https://slides.com/shaunna163/set-map/embed" title="Set & Map" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://slides.com/shaunna163/set-map/" target="_blank" class="grid-open-btn">slides原始連結</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://slides.com/shaunna163/structures/embed" itle="Structures" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://slides.com/shaunna163/structures/" target="_blank" class="grid-open-btn">slides原始連結</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://slides.com/shaunna163/greedy/embed" title="Greedy" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://slides.com/shaunna163/greedy" target="_blank" class="grid-open-btn">slides原始連結</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://hackmd.io/vxEB8eA1R2mkNPwtmEZcWQ" title="#ZSISC29×30" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="https://hackmd.io/vxEB8eA1R2mkNPwtmEZcWQ?view" target="_blank" class="grid-open-btn">hackmd原始連結</a>
+      </div>
+
+     </div>
+    </div>
+
+    <div class="alot">
+      <h2>
+      課堂剪影
+      </h2>
+      <p>少量授課照片</p>
+      <div class="pictures"> 
+      <div class="photo-wall">
+        <div class="col">
+          <img src="static/img/teach01.jpg" alt="橫向照片 1" class="h-img">
+          <img src="static/img/teach04.jpg" alt="橫向照片 2" class="h-img">
+        </div>
+        
+        <div class="col">
+          <img src="static/img/teach03.jpg" alt="橫向照片 3" class="h-img">
+          <img src="static/img/teach02.jpg" alt="橫向照片 4" class="h-img">
+        </div>
+        <div class="col">
+          <img src="static/img/teach05.jpg" alt="直向照片" class="v-img">
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </section>
+
   </div>
 
   

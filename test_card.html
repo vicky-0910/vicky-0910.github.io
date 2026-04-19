@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高级卡片堆叠效果</title>
+    <!-- 1. 核心库 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <!-- 2. 会员插件（含 ScrollSmoother） -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollSmoother.min.js"></script>
+    <!-- 3. ScrollTrigger 插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --black: #0f0f0f;
+            --dark-gray: #1a1a1a;
+            --white: #fff;
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent1: #fd79a8;
+            --accent2: #00cec9;
+            --accent3: #ffeaa7;
+            --text-dark: #2d3436;
+            --text-light: #dfe6e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        main {
+            padding: 3.125rem 0;
+        }
+
+        h1 {
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.125rem, 17.321vw + -1.357rem, 12.5rem);
+            line-height: clamp(4.688rem, 21.363vw + -0.84rem, 16.25rem);
+            margin: 6.25rem 0;
+            text-align: center;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+            position: sticky;
+            top: 10px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent1), var(--accent2));
+            border-radius: 2px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .stacking {
+            position: relative;
+            margin: 10vh 0;
+        }
+
+        .stacking__card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 25vh auto;
+            max-width: 800px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform-origin: center top;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stacking__card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .stacking__card:nth-child(2) {
+            background: linear-gradient(135deg, #d6e684 0%, #bdc677 100%);
+        }
+
+        .stacking__card:nth-child(3) {
+            background: linear-gradient(135deg, #84e6d6 0%, #67bdc6 100%);
+        }
+
+        .stacking__card:nth-child(4) {
+            background: linear-gradient(135deg, #4fc1ed 0%, #3aa8d0 100%);
+        }
+
+        .stacking__content {
+            font-size: 1.1rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .stacking__content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--dark-gray);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 5;
+        }
+
+        p {
+            margin: 1.25rem 0;
+            font-size: 1.1rem;
+        }
+
+        .container p:first-child::first-letter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary);
+            font-family: 'Playfair Display', serif;
+            float: left;
+            line-height: 1;
+            margin-right: 0.5rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .stacking__card {
+                max-width: 90%;
+                margin: 15vh auto;
+                padding: 1.8rem;
+            }
+            
+            .container {
+                max-width: 90%;
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                margin: 4rem 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stacking__card {
+                padding: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .stacking__content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="stacking">
+        <h1>高级卡片堆叠</h1>
+        
+            <div class="stacking__card">
+                <h2>创意设计</h2>
+                <div class="stacking__content">
+                    <p>探索无限可能的设计理念，将您的想法转化为令人惊叹的视觉体验。我们专注于创造既美观又实用的解决方案。</p>
+                    <p>每一个细节都经过精心雕琢，确保为用户提供无缝且愉悦的体验。</p>
+                </div>
+            </div>
+            <div class="stacking__card">
+                <h2>用户体验</h2>
+                <div class="stacking__content">
+                    <p>以用户为中心的设计方法，确保您的产品不仅外观出众，而且易于使用。我们从用户的角度出发，优化每一个交互细节。</p>
+                    <p>通过深入的调研和测试，我们创建直观且高效的界面，提升用户满意度和参与度。</p>
+                </div>
+            </div>
+            <div class="stacking__card">
+                <h2>技术创新</h2>
+                <div class="stacking__content">
+                    <p>利用最新的技术趋势和工具，我们构建强大而灵活的解决方案。从响应式设计到高性能代码，我们确保您的项目处于技术前沿。</p>
+                    <p>不断创新和改进是我们的核心理念，帮助您在竞争激烈的市场中保持领先。</p>
+                </div>
+            </div>
+            <div class="stacking__card">
+                <h2>成果展示</h2>
+                <div class="stacking__content">
+                    <p>见证我们工作的卓越成果。从概念到实现，我们与客户紧密合作，提供超出期望的最终产品。</p>
+                    <p>我们的作品集展示了多样化的项目和行业，证明了我们适应不同需求和挑战的能力。</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="container">
+            <p>在现代网页设计中，滚动效果和交互动画已成为吸引用户注意力的关键因素。通过精心设计的卡片堆叠效果，我们可以创建出既视觉惊艳又功能强大的用户界面。</p>
+            <p>这种设计模式特别适合展示产品特性、服务项目或作品集，因为它允许在有限的屏幕空间内呈现大量信息，同时保持页面的整洁和直观。</p>
+            <p>平滑的滚动效果和渐进的动画转换不仅提升了用户体验，还赋予了网站一种高端和专业的感觉。通过使用GSAP等现代JavaScript动画库，我们可以实现流畅的性能和跨浏览器兼容性。</p>
+            <p>响应式设计确保这种效果在各种设备上都能完美呈现，从桌面显示器到移动设备，为用户提供一致的体验。</p>
+        </section>
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+        ScrollSmoother.create({
+            smooth: 1,
+            effects: true,
+            normalizeScroll: true
+        });
+
+        const cards = gsap.utils.toArray(".stacking__card");
+        const spacer = 50;
+
+        cards.forEach((card, index) => {
+            ScrollTrigger.create({
+                trigger: card,
+                start: `center-=${index * spacer} center`,
+                endTrigger: ".stacking",
+                end: `bottom center`,
+                pin: true,
+                pinSpacing: false,
+                markers: true, // 取消注释可显示滚动触发器标记
+                invalidateOnRefresh: true
+            });
+
+            const scaleValue = 0.85 + index * 0.05;
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: `top center`,
+                    end: `bottom center`,
+                    scrub: true,
+                     markers: true, // 取消注释可显示滚动触发器标记
+                    invalidateOnRefresh: true
+                },
+                scale: scaleValue
+            });
+        });
+    </script>
+</body>
+
+</html>

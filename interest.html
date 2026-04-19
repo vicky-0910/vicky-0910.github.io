@@ -14,8 +14,8 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
   <style>
-    body{
-      background: linear-gradient(0deg, #98eab0 0%,#f3ffda  60%);
+body{
+      background: #C2FFD5;
       color: #444;
     }
 
@@ -32,8 +32,7 @@
       display:block;
       width:50vw;
       height:4px;
-      background:linear-gradient(to right, #98eab0 0%,#f3ffda  60%);
-
+      background: #EEFFED;
       margin:8px auto 0;
       border-radius:2px;
     }
@@ -43,10 +42,11 @@
     .era{
       text-align: left;
       padding: 20px 50px 150px 50px;
-      margin: 0 5vw;
+      margin: 45px 5vw;
       display:flex;
       flex-direction:column;
       align-items:center;
+      box-shadow: 0px 0px 0px 5px #C2FFD5,15px 15px 0px 0px #EEFFED,-15px -15px 0px 0px #EEFFED;
     }
 
     /* sticky title */
@@ -57,8 +57,6 @@
       font-size: 1.6rem;
       font-weight: bold;
       margin: 0 0 20px 0;
-      position: sticky;
-      top: 50px;
       padding: 10px 0;
     }
 
@@ -81,7 +79,7 @@
 
       padding:40px;
 
-      margin-bottom:120px;
+      margin-bottom:70px;
 
       box-shadow:0 15px 35px rgba(0,0,0,0.15);
 
@@ -94,13 +92,23 @@
     /* card text */
 
     .stacking__card h2{
-      margin-bottom:10px;
+      color: #253428; 
       font-size:1.4rem;
     }
 
     .stacking__card p{
       line-height:1.7;
       opacity:0.8;
+    }
+
+    .stacking__card h3{
+      color: #253428; 
+      margin-bottom:10px;
+    }
+
+    .stacking__card a{
+      text-decoration: none; 
+      color: #66B8A7;
     }
 
 
@@ -119,6 +127,7 @@
 
     .stacking__card{
       padding:30px;
+      margin-bottom:200px;
     }
 
     }
@@ -152,18 +161,18 @@
 
     <div class="stacking">
 
-      <a href="#" style="text-decoration: none; color: #444;">
+      <a href="clip.html" style="text-decoration: none; color: #444;">
       <div class="stacking__card">
       <h2>影片剪輯</h2>
-      <p>因為社團而學會的技能，結果連高中的畢業影片也一併負責了。回頭檢視一個個影片可以感覺到自己逐漸成長</p>
-      <p></p>
+      <p>最一開始只是社團營隊影片需要剪輯，大概有個操作軟體的印象就上了，結果後續被大家當作專職剪輯，高中班級畢業影片也交到我手上了。回頭檢視一個個影片，或多或少也看出自己有些成長。</p>
+      <p style="opacity: 1; margin-top: 10px;color: #66B8A7;">查看影片 →</p>
       </div>
       </a>
 
       <a href="#" style="text-decoration: none; color: #444;">
       <div class="stacking__card">
       <h2>閱讀小筆記</h2>
-      <p>一些自己看完覺得要記得的部分</p>
+      <p>一些自己看完書覺得要記得的部分</p>
       <!--用表格、日期+書名&小記錄-->
       </div>
       </a>
@@ -220,7 +229,8 @@
                 scrollTrigger: {
                     trigger: card,
                     start: "top 30%",
-                    end: "bottom top",
+                    endTrigger: stack,
+                    end: "bottom 70%",
                     scrub: true,
                     //markers: true,
                     invalidateOnRefresh: true

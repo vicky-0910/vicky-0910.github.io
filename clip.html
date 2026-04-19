@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>璇 SYUAN</title>
+
+  <link rel="icon" href="static/img/icon.jpeg" type="image/x-icon" />
+  <link rel="stylesheet" href="static/css/EricCSSReset.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+  <style>
+    body{
+      background: #B8FCE5;
+      color: #444;
+    }
+    a{
+      color: #000;
+    }
+
+    .slides {
+      display: grid;
+      gap: 15px; /* 設定簡報之間的間距 */
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .slides iframe {
+      width: 100% !important;
+      /* 重要：將比例設定在 iframe 本身，確保每份簡報都是 16:9 */
+      aspect-ratio: 16 / 9; 
+      border: none;
+      display: block;
+    }
+
+    .slide-item {
+      display: flex;
+      flex-direction: column;
+      background: #eCefed;
+      border-radius: 6px;
+      overflow: hidden; /* 確保圓角效果 */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* 下方的按鈕樣式 */
+    .grid-open-btn {
+      display: block;
+      width: 100%;       /* 填滿寬度 */
+      padding: 3px 0;   /* 上下內距 */
+      text-align: center;
+      color: #3c4340;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: background 0.3s;
+      opacity: 0.8;
+    }
+
+    @media (max-width:768px){
+      .slides{ grid-template-columns:repeat(1,1fr); }
+    }
+
+    @media (min-width:769px){
+      .slides{ grid-template-columns:repeat(2,1fr); }
+    }
+
+
+
+    .photo-wall {
+      display: flex;
+      align-items: stretch; /* 這是核心：讓所有欄位等高 */
+      gap: 15px;
+    }
+
+    .col {
+      flex: 1; /* 讓每一欄平分寬度 */
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* 橫向照片：正常撐滿寬度 */
+    .h-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+
+    /* 直向照片：關鍵設定 */
+    .v-img {
+      width: 100%;
+      height: 100%;    /* 強制撐滿該欄位的高度 */
+      object-fit: cover; /* 確保照片不會變形，會稍微裁切邊緣以補滿高度 */
+      border-radius: 3px;
+    }
+
+    @media (min-width: 769px) {
+
+    }
+
+    /* 手機版：一欄佈局 */
+    @media (max-width: 768px) {
+      .photo-wall {
+        gap: 5px;
+      }
+      .col {
+        gap: 5px;
+      }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 3rem 0px 0px;
+      font-weight: bold;
+      color: #444;
+      text-align: center;
+    }
+
+
+    /* section */
+
+    .era{
+      text-align: left;
+      padding: 20px 50px 50px 50px;
+      margin: 45px 5vw;
+      display:flex;
+      flex-direction:column;
+      box-shadow: 0px 0px 0px 5px #B8FCE5,15px 15px 0px 0px #EEFFED,-15px -15px 0px 0px #EEFFED;
+    }
+
+    /* sticky title */
+
+    .era-title {
+      text-align: left;
+      align-self:flex-start;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin: 0 0 20px 0;
+      padding: 10px 0;
+    }
+    h2{
+      text-align: left;
+      color: #253428;
+      align-self:flex-start;
+      font-size: 1.4rem;
+    }
+
+    h2::after{
+      content:"";
+      display:block;
+      width:100%;
+      height:2px;
+      margin: 3px 0px;
+      background: #B5D19F;
+      border-radius:2px;
+    }
+
+    .alot{
+      background:#EEFFED;
+      padding:15px;
+      margin: 5px;
+      box-shadow: 0px 3px 0px 0px #AFC999;
+      text-decoration: none;
+    }
+    .alot p{
+      line-height:1.7;
+    }
+    .alot p a{
+      text-decoration: none; 
+      color: #84C6B9;
+    }
+
+    /* mobile */
+
+    @media (max-width:768px){
+    h1{
+      font-size: 2.4rem;
+    }
+    .era{
+      padding: 10px 30px 150px;
+    }
+    .era-title{
+      font-size:1.6rem;
+    }
+    h1{
+      font-size: 1.4rem;
+    }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+      <a class="logo" href="index.html"><img src="static/img/icon.jpeg" />ABOUT SYUAN</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="info.html">資訊成果</a>
+        <a href="service.html">服務活動</a>
+        <a href="interest.html">興趣學習</a>
+        <a href="awards.html">競賽與得獎紀錄</a>
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        ☰
+      </div>
+  </nav>
+
+  <div class="content">
+    <h1>影片剪輯</h1>
+    <span style="opacity: 0.8;">不知道為什麼總是在趕死線</span>
+    <section class="era" style="background: #DDFFC2;">
+
+    <div class="alot">
+      <h2>
+      社團營隊
+      </h2>
+      <p>七天營隊的結訓影片，會在第七天播放，通常營期最後兩天會放棄睡眠趕著剪片到第七天的下午</p>
+      <div class="slides"> 
+      <div class="slide-item">
+      <iframe src="https://www.youtube.com/embed/_eaQscPr98I?si=VNalmhPCbvwibfxO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <a href="https://www.youtube.com/embed/_eaQscPr98I?si=VNalmhPCbvwibfxO" target="_blank" class="grid-open-btn">2022 暑訓</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://www.youtube.com/embed/KQV4xqe5aXk?si=ofXXNOP3NXBGB01s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <a href="https://www.youtube.com/embed/KQV4xqe5aXk?si=ofXXNOP3NXBGB01s" target="_blank" class="grid-open-btn">2023 寒訓</a>
+      </div>
+      <div class="slide-item">
+      <iframe src="https://www.youtube.com/embed/FoncKqwwx3k?si=v6Vks7hCzmDQgSuk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <a href="https://www.youtube.com/embed/FoncKqwwx3k?si=v6Vks7hCzmDQgSuk" target="_blank" class="grid-open-btn">2023 寒訓 幫忙支援片頭</a>
+      </div>
+     </div>
+    </div>
+
+    <div class="alot">
+      <h2>
+      高三畢業影片
+      </h2>
+      <p>在畢典放映的影片，每次看到最後那個花俏的畢業快樂都會笑出來，因為剪片趕到來不及做字卡，乾脆讓他花俏的不帶悲傷。作為資訊班群熱情邀請資訊老師入鏡還摔了空拍機，總之非常喜歡。</p>
+      <div class="slides"> 
+      <div class="slide-item">
+      <iframe src="https://www.youtube.com/embed/B-Zs3ufziJ4?si=dijWwU7VBjSi71s0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <a href="https://www.youtube.com/embed/B-Zs3ufziJ4?si=dijWwU7VBjSi71s0" target="_blank" class="grid-open-btn">畢業影片</a>
+      </div>
+
+     </div>
+    </div>
+  </div>
+
+  
+  <script>
+    const toggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    /* 手機版點擊第二層 */
+    document.querySelectorAll(".dropdown-toggle").forEach(item => {
+      item.addEventListener("click", function(e) {
+
+        // 手機才啟用點擊展開
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          this.parentElement.classList.toggle("open");
+        }
+
+      });
+    });
+  </script>
+</body>
+</html>

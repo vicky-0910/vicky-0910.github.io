@@ -15,7 +15,7 @@
 
   <style>
     body{
-      background: linear-gradient(0deg, #98eab0 0%,#f3ffda  60%);
+      background: #C2FFD5;
       color: #444;
     }
 
@@ -32,8 +32,7 @@
       display:block;
       width:50vw;
       height:4px;
-      background:linear-gradient(to right, #98eab0 0%,#f3ffda  60%);
-
+      background: #EEFFED;
       margin:8px auto 0;
       border-radius:2px;
     }
@@ -43,10 +42,11 @@
     .era{
       text-align: left;
       padding: 20px 50px 150px 50px;
-      margin: 0 5vw;
+      margin: 45px 5vw;
       display:flex;
       flex-direction:column;
       align-items:center;
+      box-shadow: 0px 0px 0px 5px #C2FFD5,15px 15px 0px 0px #EEFFED,-15px -15px 0px 0px #EEFFED;
     }
 
     /* sticky title */
@@ -57,8 +57,6 @@
       font-size: 1.6rem;
       font-weight: bold;
       margin: 0 0 20px 0;
-      position: sticky;
-      top: 50px;
       padding: 10px 0;
     }
 
@@ -81,7 +79,7 @@
 
       padding:40px;
 
-      margin-bottom:120px;
+      margin-bottom:70px;
 
       box-shadow:0 15px 35px rgba(0,0,0,0.15);
 
@@ -94,13 +92,23 @@
     /* card text */
 
     .stacking__card h2{
-      margin-bottom:10px;
+      color: #253428; 
       font-size:1.4rem;
     }
 
     .stacking__card p{
       line-height:1.7;
       opacity:0.8;
+    }
+
+    .stacking__card h3{
+      color: #253428; 
+      margin-bottom:10px;
+    }
+
+    .stacking__card a{
+      text-decoration: none; 
+      color: #66B8A7;
     }
 
 
@@ -119,6 +127,7 @@
 
     .stacking__card{
       padding:30px;
+      margin-bottom:200px;
     }
 
     }
@@ -151,26 +160,27 @@
   <section class="era" style="background: #f3ffda;">
     <div class="stacking">
 
+      <div class="stacking__card">
+      <h2>高中校內幹部</h2>
+      <h3>高二、高三 副班長與小義工</h3>
+      </div>
+
       <a href="#" style="text-decoration: none; color: #444;">
       <div class="stacking__card">
       <h2>營隊籌畫</h2>
-      <p>高二、大一</p>
+      <h3>高二、大一</h3>
+      <p>高中社團茶會、暑訓、迎新、秋遊、聯課、耶晚、寒訓、春遊；大一迎新宿營</p>
       </div>
       </a>
 
       <div class="stacking__card">
-      <h2>高中校內義工</h2>
-      <p>高二、高三</p>
-      </div>
-
-      <div class="stacking__card">
-      <h2>班際排球/系女排 副隊</h2>
-      <p>高二、大二</p>
+      <h2>班際排球/系女排</h2>
+      <h3>高二、大二 副隊</h3>
       </div>
 
       <div class="stacking__card">
       <h2>光復志工</h2>
-      <p>大二</p>
+      <h3>大二</h3>
       </div>
 
 
@@ -212,7 +222,8 @@
                 scrollTrigger: {
                     trigger: card,
                     start: "top 30%",
-                    end: "bottom top",
+                    endTrigger: stack,
+                    end: "bottom 70%",
                     scrub: true,
                     //markers: true,
                     invalidateOnRefresh: true
